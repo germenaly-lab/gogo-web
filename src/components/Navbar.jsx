@@ -86,9 +86,9 @@ export default function Navbar({ navItems, activeTab, setActiveTab, searchQuery,
             </div>
           </>
         ) : (
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', background: 'rgba(245,158,11,0.15)', padding: '8px 16px', borderRadius: '9999px', border: '1px solid #f59e0b' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'rgba(245,158,11,0.15)', padding: '8px 16px', borderRadius: '9999px', border: '1px solid #f59e0b' }}>
             <ShieldCheck size={18} color="#f59e0b" />
-            <span style={{ fontSize: '13px', fontWeight: '800', color: '#f59e0b' }}>بوابة تسجيل الدخول الموحدة - يرجى الدخول لمشاهدة التفاصيل</span>
+            <span style={{ fontSize: '13px', fontWeight: '800', color: '#f59e0b' }}>تسجيل الدخول</span>
           </div>
         )}
       </nav>

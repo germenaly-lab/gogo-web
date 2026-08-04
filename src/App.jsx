@@ -56,27 +56,12 @@ export default function App() {
       />
 
       <main className="main-content">
-        {/* MANDATORY AUTHENTICATION LANDING GATE: If not logged in, render LoginSection only! */}
         {!user ? (
-          <div style={{ padding: '20px 0' }}>
-            <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 16px', borderRadius: '9999px', background: 'rgba(245,158,11,0.15)', border: '1px solid #f59e0b', color: '#f59e0b', fontSize: '13px', fontWeight: '800', marginBottom: '16px' }}>
-                🛡️ بوابة وكالات Bigo Live المعتمدة الرسمية
-              </div>
-              <h1 style={{ fontSize: '36px', fontWeight: '900', color: '#fff', marginBottom: '12px' }}>
-                تسجيل الدخول يتيح لك الوصول إلى الدليل والعمولات
-              </h1>
-              <p style={{ fontSize: '16px', color: '#94a3b8', maxWidth: '650px', margin: '0 auto', lineHeight: '1.7' }}>
-                يرجى تسجيل الدخول أو تقديم طلب إنشاء وكالة جديد لفتح كامل تفاصيل المنصة، حاسبة الأرباح الفورية، الشارات المعتمدة، ودليل التارجت.
-              </p>
-            </div>
-
+          <div style={{ padding: '40px 0' }}>
             <LoginSection
               user={user}
               setUser={setUser}
               setActiveTab={setActiveTab}
-              isRegisterMode={isRegisterMode}
-              setIsRegisterMode={setIsRegisterMode}
             />
           </div>
         ) : (

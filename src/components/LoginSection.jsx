@@ -1,38 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import { UserCheck, Lock, Mail, Eye, EyeOff, Shield, Award, Star, LogOut, CheckCircle, ArrowLeft, KeyRound, Phone, Users, BarChart3, Clock, DollarSign, AlertCircle } from 'lucide-react';
+import React, { useState } from 'react';
+import { UserCheck, Lock, Mail, Eye, EyeOff, Shield, Award, Star, LogOut, ArrowLeft, KeyRound, Users, BarChart3, Clock, DollarSign } from 'lucide-react';
 
-export default function LoginSection({ user, setUser, setActiveTab, isRegisterMode, setIsRegisterMode }) {
-  const [isRegister, setIsRegister] = useState(isRegisterMode || false);
+export default function LoginSection({ user, setUser, setActiveTab }) {
   const [role, setRole] = useState('manager'); // 'manager', 'streamer', 'supervisor'
   const [showPassword, setShowPassword] = useState(false);
-
-  useEffect(() => {
-    if (isRegisterMode) {
-      setIsRegister(true);
-      setRole('manager');
-    }
-  }, [isRegisterMode]);
 
   // Form State
   const [identifier, setIdentifier] = useState('');
   const [bigoId, setBigoId] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [agencyName, setAgencyName] = useState('');
-  const [cityCountry, setCityCountry] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
-    if (!identifier || !password || (isRegister && !bigoId)) {
+    if (!identifier || !password) {
       setErrorMessage('يرجى ملء كافة الحقول المطلوبة لتنفيذ العملية');
       return;
     }
     setErrorMessage('');
     
-    // Simulate Login / Registration Success
+    // Simulate Login Success
     setUser({
-      name: isRegister && agencyName ? agencyName : (role === 'manager' ? 'وكالة الفرسان المعتمدة' : role === 'streamer' ? 'المذيعة سارة خالد' : 'المشرف أحمد علي'),
+      name: role === 'manager' ? 'وكالة الفرسان المعتمدة' : role === 'streamer' ? 'المذيعة سارة خالد' : 'المشرف أحمد علي',
       role: role,
       bigoId: bigoId || '908765432',
       email: identifier.includes('@') ? identifier : `${identifier}@bigo.tv`,
@@ -41,7 +30,7 @@ export default function LoginSection({ user, setUser, setActiveTab, isRegisterMo
       monthlySalary: role === 'manager' ? '$11,600 USD' : '$1,440 USD',
       activeStreamers: role === 'manager' ? 24 : 1,
       targetProgress: 85,
-      cityCountry: cityCountry || 'الرياض، السعودية'
+      cityCountry: 'الرياض، السعودية'
     });
   };
 
@@ -49,7 +38,6 @@ export default function LoginSection({ user, setUser, setActiveTab, isRegisterMo
     setUser(null);
     setIdentifier('');
     setPassword('');
-    if (setIsRegisterMode) setIsRegisterMode(false);
   };
 
   // If user is already logged in, display the User Dashboard Panel
@@ -141,68 +129,11 @@ export default function LoginSection({ user, setUser, setActiveTab, isRegisterMo
   return (
     <section style={{ maxWidth: '540px', margin: '0 auto' }}>
       <div className="glass-card" style={{ padding: '36px', background: 'linear-gradient(145deg, rgba(22, 30, 49, 0.95), rgba(15, 23, 42, 0.98))', border: '1px solid rgba(245,158,11,0.4)' }}>
-        
-        {/* Important Policy Alert */}
-        {isRegister && (
-          <div style={{ background: 'rgba(245,158,11,0.15)', border: '1px solid #f59e0b', padding: '12px 16px', borderRadius: '12px', marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px', fontSize: '13px', color: '#fef08a' }}>
-            <AlertCircle size={20} color="#f59e0b" style={{ flexShrink: 0 }} />
-            <span>تنبيه هام: يتطلب إنشاء الوكالة التوثيق الرسمي وتسجيل الدخول عبر المنصة.</span>
-          </div>
-        )}
-
-        {/* Toggle Login vs Register */}
-        <div style={{ display: 'flex', background: 'rgba(11,15,25,0.8)', padding: '4px', borderRadius: '9999px', marginBottom: '28px', border: '1px solid rgba(255,255,255,0.08)' }}>
-          <button
-            style={{
-              flex: 1,
-              padding: '10px',
-              borderRadius: '9999px',
-              border: 'none',
-              background: !isRegister ? 'linear-gradient(135deg, #f59e0b, #d97706)' : 'transparent',
-              color: !isRegister ? '#0b0f19' : '#94a3b8',
-              fontWeight: '800',
-              fontSize: '14px',
-              cursor: 'pointer',
-              fontFamily: 'inherit',
-              transition: 'all 0.2s ease'
-            }}
-            onClick={() => {
-              setIsRegister(false);
-              if (setIsRegisterMode) setIsRegisterMode(false);
-              setErrorMessage('');
-            }}
-          >
-            تسجيل الدخول
-          </button>
-          <button
-            style={{
-              flex: 1,
-              padding: '10px',
-              borderRadius: '9999px',
-              border: 'none',
-              background: isRegister ? 'linear-gradient(135deg, #f59e0b, #d97706)' : 'transparent',
-              color: isRegister ? '#0b0f19' : '#94a3b8',
-              fontWeight: '800',
-              fontSize: '14px',
-              cursor: 'pointer',
-              fontFamily: 'inherit',
-              transition: 'all 0.2s ease'
-            }}
-            onClick={() => {
-              setIsRegister(true);
-              if (setIsRegisterMode) setIsRegisterMode(true);
-              setErrorMessage('');
-            }}
-          >
-            إنشاء حساب وطلب وكالة
-          </button>
-        </div>
-
         <h2 style={{ fontSize: '24px', fontWeight: '900', textAlign: 'center', marginBottom: '8px', color: '#fff' }}>
-          {isRegister ? 'تسجيل حساب وتفعيل طلب الوكالة' : 'تسجيل الدخول إلى حسابك'}
+          تسجيل الدخول إلى حسابك
         </h2>
         <p style={{ fontSize: '14px', color: '#94a3b8', textAlign: 'center', marginBottom: '24px' }}>
-          {isRegister ? 'قم بإنشاء حسابك الرسمي وتعبئة بيانات الاعتماد لإنشاء الوكالة' : 'أدخل بيانات الاعتماد الخاصة بك للدخول إلى لوحة التحكم'}
+          أدخل بيانات الاعتماد الخاصة بك للدخول إلى لوحة التحكم
         </p>
 
         {/* Role Selector */}
@@ -288,20 +219,6 @@ export default function LoginSection({ user, setUser, setActiveTab, isRegisterMo
 
         {/* Login Form */}
         <form onSubmit={handleLoginSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          {isRegister && role === 'manager' && (
-            <div>
-              <label className="form-label">اسم الوكالة المراد تفعيلها:</label>
-              <input
-                type="text"
-                required
-                className="form-input"
-                placeholder="مثال: وكالة النجوم المعتمدة"
-                value={agencyName}
-                onChange={(e) => setAgencyName(e.target.value)}
-              />
-            </div>
-          )}
-
           <div>
             <label className="form-label">البريد الإلكتروني أو رقم الهاتف:</label>
             <div style={{ position: 'relative' }}>
@@ -324,29 +241,14 @@ export default function LoginSection({ user, setUser, setActiveTab, isRegisterMo
               <KeyRound size={18} style={{ position: 'absolute', right: '14px', top: '16px', color: '#64748b' }} />
               <input
                 type="text"
-                required
                 className="form-input"
                 style={{ paddingRight: '44px' }}
-                placeholder="مثال: 908765432"
+                placeholder="مثال: 908765432 (اختياري)"
                 value={bigoId}
                 onChange={(e) => setBigoId(e.target.value)}
               />
             </div>
           </div>
-
-          {isRegister && (
-            <div>
-              <label className="form-label">المدينة والدولة:</label>
-              <input
-                type="text"
-                required
-                className="form-input"
-                placeholder="مثال: الرياض، السعودية"
-                value={cityCountry}
-                onChange={(e) => setCityCountry(e.target.value)}
-              />
-            </div>
-          )}
 
           <div>
             <label className="form-label">كلمة المرور:</label>
@@ -371,45 +273,21 @@ export default function LoginSection({ user, setUser, setActiveTab, isRegisterMo
             </div>
           </div>
 
-          {isRegister && (
-            <div>
-              <label className="form-label">تأكيد كلمة المرور:</label>
-              <input
-                type="password"
-                required
-                className="form-input"
-                placeholder="••••••••"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              />
-            </div>
-          )}
-
-          {!isRegister && (
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '13px' }}>
-              <label style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#94a3b8', cursor: 'pointer' }}>
-                <input type="checkbox" style={{ accentColor: '#f59e0b' }} defaultChecked />
-                <span>تذكر بيانات الدخول</span>
-              </label>
-              <a href="#" onClick={(e) => { e.preventDefault(); alert('يرجى التواصل مع الدعم الفني عبر الواتساب لاستعادة كلمة المرور.'); }} style={{ color: '#06b6d4', textDecoration: 'none' }}>
-                نسيت كلمة المرور؟
-              </a>
-            </div>
-          )}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '13px' }}>
+            <label style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#94a3b8', cursor: 'pointer' }}>
+              <input type="checkbox" style={{ accentColor: '#f59e0b' }} defaultChecked />
+              <span>تذكر بيانات الدخول</span>
+            </label>
+            <a href="#" onClick={(e) => { e.preventDefault(); alert('يرجى التواصل مع الدعم الفني عبر الواتساب لاستعادة كلمة المرور.'); }} style={{ color: '#06b6d4', textDecoration: 'none' }}>
+              نسيت كلمة المرور؟
+            </a>
+          </div>
 
           <button type="submit" className="action-btn-primary" style={{ width: '100%', marginTop: '10px' }}>
             <UserCheck size={18} />
-            <span>{isRegister ? 'تسجيل الحساب وإنشاء الوكالة' : 'تسجيل الدخول الآن'}</span>
+            <span>تسجيل الدخول الآن</span>
           </button>
         </form>
-
-        <div style={{ marginTop: '24px', textAlign: 'center', paddingTop: '20px', borderTop: '1px solid rgba(255,255,255,0.08)', fontSize: '13px', color: '#94a3b8' }}>
-          {isRegister ? (
-            <span>لديك حساب بالفعل؟ <a href="#" onClick={(e) => { e.preventDefault(); setIsRegister(false); if (setIsRegisterMode) setIsRegisterMode(false); }} style={{ color: '#f59e0b', fontWeight: '700', textDecoration: 'none' }}>تسجيل الدخول</a></span>
-          ) : (
-            <span>ليس لديك حساب؟ <a href="#" onClick={(e) => { e.preventDefault(); setIsRegister(true); if (setIsRegisterMode) setIsRegisterMode(true); }} style={{ color: '#f59e0b', fontWeight: '700', textDecoration: 'none' }}>إنشاء وكالة / حساب جديد</a></span>
-          )}
-        </div>
       </div>
     </section>
   );
