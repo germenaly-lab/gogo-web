@@ -18,7 +18,8 @@ import {
   badgesData as defaultBadgesData,
   updatesData as defaultUpdatesData,
   defaultCustomBlocks,
-  defaultThemeConfig
+  defaultThemeConfig,
+  defaultAccountsData
 } from './data/siteData';
 
 export default function App() {
@@ -63,6 +64,11 @@ export default function App() {
     return saved ? JSON.parse(saved) : defaultCustomBlocks;
   });
 
+  const [accountsData, setAccountsData] = useState(() => {
+    const saved = localStorage.getItem('gogo_accountsData');
+    return saved ? JSON.parse(saved) : defaultAccountsData;
+  });
+
   // URL listener for #admin or /admin
   useEffect(() => {
     const handleUrlChange = () => {
@@ -102,6 +108,10 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem('gogo_customBlocks', JSON.stringify(customBlocks));
   }, [customBlocks]);
+
+  useEffect(() => {
+    localStorage.setItem('gogo_accountsData', JSON.stringify(accountsData));
+  }, [accountsData]);
 
   const [themeMode, setThemeMode] = useState(() => {
     return localStorage.getItem('gogo_themeMode') || 'dark';
@@ -149,6 +159,7 @@ export default function App() {
     localStorage.removeItem('gogo_updatesData');
     localStorage.removeItem('gogo_badgesData');
     localStorage.removeItem('gogo_customBlocks');
+    localStorage.removeItem('gogo_accountsData');
     localStorage.removeItem('gogo_themeMode');
 
     setSiteInfo(defaultSiteInfo);
@@ -156,6 +167,7 @@ export default function App() {
     setUpdatesData(defaultUpdatesData);
     setBadgesData(defaultBadgesData);
     setCustomBlocks(defaultCustomBlocks);
+    setAccountsData(defaultAccountsData);
     setThemeMode('dark');
   };
 
@@ -215,6 +227,8 @@ export default function App() {
             setBadgesData={setBadgesData}
             customBlocks={customBlocks}
             setCustomBlocks={setCustomBlocks}
+            accountsData={accountsData}
+            setAccountsData={setAccountsData}
             onResetDefaults={handleResetDefaults}
             onCloseAdmin={() => {
               setActiveTab('home');

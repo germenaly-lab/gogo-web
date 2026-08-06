@@ -257,3 +257,55 @@ export const defaultThemeConfig = {
   glowColor: "rgba(245, 158, 11, 0.3)"
 };
 
+export const defaultAccountsData = [
+  {
+    id: "acc-1",
+    name: "وكالة الفرسان المعتمدة",
+    email: "manager@bigo.tv",
+    bigoId: "908765432",
+    role: "manager",
+    badge: "القلادة الذهبية",
+    beans: "1,450,000",
+    monthlySalary: "$11,600 USD",
+    status: "active",
+    joinDate: "أغسطس 2026"
+  },
+  {
+    id: "acc-2",
+    name: "المذيعة سارة خالد",
+    email: "sara@bigo.tv",
+    bigoId: "887766554",
+    role: "streamer",
+    badge: "مذيع مميز",
+    beans: "180,000",
+    monthlySalary: "$1,440 USD",
+    status: "active",
+    joinDate: "يوليو 2026"
+  },
+  {
+    id: "acc-3",
+    name: "المشرف أحمد علي",
+    email: "ahmed@bigo.tv",
+    bigoId: "776655443",
+    role: "supervisor",
+    badge: "القلادة الفضية",
+    beans: "450,000",
+    monthlySalary: "$3,600 USD",
+    status: "active",
+    joinDate: "يونيو 2026"
+  },
+  {
+    id: "acc-4",
+    name: "حساب الآدمن الرئيسي (Admin System)",
+    email: "admin@bigo.tv",
+    bigoId: "111000999",
+    role: "admin",
+    badge: "مسؤول نظام",
+    beans: "N/A",
+    monthlySalary: "N/A",
+    status: "active",
+    joinDate: "يناير 2026"
+  }
+];
+
+

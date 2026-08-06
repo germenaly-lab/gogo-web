@@ -23,9 +23,10 @@ import {
   Upload,
   ArrowRight,
   Lock,
-  User,
-  KeyRound,
-  LogOut
+  Users,
+  UserPlus,
+  UserCheck,
+  ShieldAlert
 } from 'lucide-react';
 
 export default function AdminDashboard({
@@ -39,6 +40,8 @@ export default function AdminDashboard({
   setBadgesData,
   customBlocks,
   setCustomBlocks,
+  accountsData = [],
+  setAccountsData = () => {},
   onResetDefaults,
   onCloseAdmin
 }) {
@@ -51,7 +54,90 @@ export default function AdminDashboard({
   const [showAdminPassword, setShowAdminPassword] = useState(false);
   const [adminLoginError, setAdminLoginError] = useState('');
 
-  const [adminTab, setAdminTab] = useState('appearance'); // 'appearance', 'updates', 'badges', 'blocks', 'system'
+  const [adminTab, setAdminTab] = useState('appearance'); // 'appearance', 'updates', 'badges', 'blocks', 'accounts', 'system'
+
+  // Accounts Form & Filter State
+  const [editingAccount, setEditingAccount] = useState(null);
+  const [accountRoleFilter, setAccountRoleFilter] = useState('all');
+  const [accountForm, setAccountForm] = useState({
+    name: '',
+    email: '',
+    bigoId: '',
+    role: 'manager',
+    badge: 'القلادة الذهبية',
+    beans: '100,000',
+    monthlySalary: '$800 USD',
+    status: 'active',
+    joinDate: 'أغسطس 2026'
+  });
+
+  const handleSaveAccount = (e) => {
+    e.preventDefault();
+    if (editingAccount) {
+      setAccountsData((prev) =>
+        prev.map((acc) =>
+          acc.id === editingAccount.id
+            ? { ...acc, ...accountForm }
+            : acc
+        )
+      );
+      setEditingAccount(null);
+    } else {
+      const newAcc = {
+        id: 'acc-' + Date.now(),
+        ...accountForm
+      };
+      setAccountsData((prev) => [...prev, newAcc]);
+    }
+
+    setAccountForm({
+      name: '',
+      email: '',
+      bigoId: '',
+      role: 'manager',
+      badge: 'القلادة الذهبية',
+      beans: '100,000',
+      monthlySalary: '$800 USD',
+      status: 'active',
+      joinDate: 'أغسطس 2026'
+    });
+  };
+
+  const handleEditAccountClick = (acc) => {
+    setEditingAccount(acc);
+    setAccountForm({
+      name: acc.name,
+      email: acc.email,
+      bigoId: acc.bigoId,
+      role: acc.role,
+      badge: acc.badge,
+      beans: acc.beans,
+      monthlySalary: acc.monthlySalary,
+      status: acc.status,
+      joinDate: acc.joinDate || 'أغسطس 2026'
+    });
+  };
+
+  const handleDeleteAccount = (id) => {
+    if (confirm('هل أنت تأكد من حذف هذا الحساب؟')) {
+      setAccountsData((prev) => prev.filter((a) => a.id !== id));
+    }
+  };
+
+  const handleToggleAccountStatus = (id) => {
+    setAccountsData((prev) =>
+      prev.map((a) =>
+        a.id === id
+          ? { ...a, status: a.status === 'active' ? 'suspended' : 'active' }
+          : a
+      )
+    );
+  };
+
+  const filteredAccounts = accountsData.filter((a) => {
+    if (accountRoleFilter === 'all') return true;
+    return a.role === accountRoleFilter;
+  });
 
   // Forms local states
   const [editingArticle, setEditingArticle] = useState(null);
@@ -518,6 +604,14 @@ export default function AdminDashboard({
         >
           <Grid size={18} />
           <span>إدارة المربعات والبطاقات ({customBlocks.length})</span>
+        </button>
+
+        <button
+          className={`nav-tab ${adminTab === 'accounts' ? 'active' : ''}`}
+          onClick={() => setAdminTab('accounts')}
+        >
+          <Users size={18} />
+          <span>إدارة الحسابات والاشتراكات ({accountsData.length})</span>
         </button>
 
         <button
@@ -1193,7 +1287,286 @@ export default function AdminDashboard({
         </div>
       )}
 
-      {/* ---------------- TAB 5: RESET & BACKUP ---------------- */}
+      {/* ---------------- TAB 5: ACCOUNTS & SUBSCRIPTIONS MANAGER ---------------- */}
+      {adminTab === 'accounts' && (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          {/* Summary Stat Cards */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px' }}>
+            <div className="glass-card" style={{ padding: '20px', border: '1px solid rgba(245,158,11,0.4)' }}>
+              <span style={{ fontSize: '13px', color: 'var(--text-muted)' }}>إجمالي الحسابات المسجلة</span>
+              <h3 style={{ fontSize: '24px', fontWeight: '900', color: '#f59e0b', marginTop: '6px' }}>{accountsData.length} حساب</h3>
+            </div>
+            <div className="glass-card" style={{ padding: '20px', border: '1px solid rgba(6,182,212,0.4)' }}>
+              <span style={{ fontSize: '13px', color: 'var(--text-muted)' }}>مدراء الوكالات</span>
+              <h3 style={{ fontSize: '24px', fontWeight: '900', color: '#06b6d4', marginTop: '6px' }}>{accountsData.filter(a => a.role === 'manager').length} مدير</h3>
+            </div>
+            <div className="glass-card" style={{ padding: '20px', border: '1px solid rgba(139,92,246,0.4)' }}>
+              <span style={{ fontSize: '13px', color: 'var(--text-muted)' }}>المذيعون والصناع</span>
+              <h3 style={{ fontSize: '24px', fontWeight: '900', color: '#8b5cf6', marginTop: '6px' }}>{accountsData.filter(a => a.role === 'streamer').length} مذيع</h3>
+            </div>
+            <div className="glass-card" style={{ padding: '20px', border: '1px solid rgba(16,185,129,0.4)' }}>
+              <span style={{ fontSize: '13px', color: 'var(--text-muted)' }}>المشرفون وحسابات الأدمن</span>
+              <h3 style={{ fontSize: '24px', fontWeight: '900', color: '#10b981', marginTop: '6px' }}>{accountsData.filter(a => a.role === 'supervisor' || a.role === 'admin').length} حساب</h3>
+            </div>
+          </div>
+
+          {/* Account Form (Create / Edit) */}
+          <div className="glass-card" style={{ padding: '28px' }}>
+            <h2 style={{ fontSize: '20px', fontWeight: '800', marginBottom: '20px', color: '#f59e0b', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <UserPlus size={22} />
+              <span>{editingAccount ? 'تعديل بيانات الحساب والاشتراك' : 'إضافة حساب / مشترك جديد إلى النظام'}</span>
+            </h2>
+
+            <form onSubmit={handleSaveAccount} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px' }}>
+              <div>
+                <label className="form-label">الاسم الكامل / اسم الوكالة:</label>
+                <input
+                  type="text"
+                  required
+                  className="form-input"
+                  placeholder="مثال: وكالة الفرسان المعتمدة"
+                  value={accountForm.name}
+                  onChange={(e) => setAccountForm({ ...accountForm, name: e.target.value })}
+                />
+              </div>
+
+              <div>
+                <label className="form-label">البريد الإلكتروني / الهاتف:</label>
+                <input
+                  type="text"
+                  required
+                  className="form-input"
+                  placeholder="example@bigo.tv أو 0500000000"
+                  value={accountForm.email}
+                  onChange={(e) => setAccountForm({ ...accountForm, email: e.target.value })}
+                />
+              </div>
+
+              <div>
+                <label className="form-label">آيدي بيجو (Bigo ID):</label>
+                <input
+                  type="text"
+                  className="form-input"
+                  placeholder="مثال: 908765432"
+                  value={accountForm.bigoId}
+                  onChange={(e) => setAccountForm({ ...accountForm, bigoId: e.target.value })}
+                />
+              </div>
+
+              <div>
+                <label className="form-label">صفة الحساب / نوع الاشتراك:</label>
+                <select
+                  className="form-select"
+                  value={accountForm.role}
+                  onChange={(e) => setAccountForm({ ...accountForm, role: e.target.value })}
+                >
+                  <option value="manager">مدير وكالة (Manager)</option>
+                  <option value="streamer">مذيع / صانع محتوى (Streamer)</option>
+                  <option value="supervisor">مشرف مساعد (Supervisor)</option>
+                  <option value="admin">مسؤول نظام (Admin)</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="form-label">القلادة / الرتبة الممنوحة:</label>
+                <input
+                  type="text"
+                  className="form-input"
+                  placeholder="القلادة الذهبية / الفضية / البرونزية"
+                  value={accountForm.badge}
+                  onChange={(e) => setAccountForm({ ...accountForm, badge: e.target.value })}
+                />
+              </div>
+
+              <div>
+                <label className="form-label">مجموع الفاصوليا:</label>
+                <input
+                  type="text"
+                  className="form-input"
+                  placeholder="مثال: 1,450,000"
+                  value={accountForm.beans}
+                  onChange={(e) => setAccountForm({ ...accountForm, beans: e.target.value })}
+                />
+              </div>
+
+              <div>
+                <label className="form-label">الراتب / العمولة الشهري:</label>
+                <input
+                  type="text"
+                  className="form-input"
+                  placeholder="مثال: $11,600 USD"
+                  value={accountForm.monthlySalary}
+                  onChange={(e) => setAccountForm({ ...accountForm, monthlySalary: e.target.value })}
+                />
+              </div>
+
+              <div>
+                <label className="form-label">حالة الاشتراك والحساب:</label>
+                <select
+                  className="form-select"
+                  value={accountForm.status}
+                  onChange={(e) => setAccountForm({ ...accountForm, status: e.target.value })}
+                >
+                  <option value="active">نشط ومفعل (Active)</option>
+                  <option value="suspended">معلق / موقوف (Suspended)</option>
+                  <option value="pending">قيد المراجعه (Pending)</option>
+                </select>
+              </div>
+
+              <div style={{ gridColumn: '1 / -1', display: 'flex', gap: '12px', marginTop: '10px' }}>
+                <button type="submit" className="action-btn-primary">
+                  <Save size={18} />
+                  <span>{editingAccount ? 'حفظ التعديلات' : 'إضافة الحساب والاشتراك'}</span>
+                </button>
+                {editingAccount && (
+                  <button
+                    type="button"
+                    className="action-btn-secondary"
+                    onClick={() => {
+                      setEditingAccount(null);
+                      setAccountForm({
+                        name: '',
+                        email: '',
+                        bigoId: '',
+                        role: 'manager',
+                        badge: 'القلادة الذهبية',
+                        beans: '100,000',
+                        monthlySalary: '$800 USD',
+                        status: 'active',
+                        joinDate: 'أغسطس 2026'
+                      });
+                    }}
+                  >
+                    إلغاء التعديل
+                  </button>
+                )}
+              </div>
+            </form>
+          </div>
+
+          {/* Accounts List & Table */}
+          <div className="glass-card" style={{ padding: '28px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px', marginBottom: '20px' }}>
+              <h3 style={{ fontSize: '18px', fontWeight: '800', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <Users size={20} color="#f59e0b" />
+                <span>قائمة حسابات المشتركين والوكلاء والآدمن ({filteredAccounts.length})</span>
+              </h3>
+
+              {/* Role Filter Tabs */}
+              <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
+                {['all', 'manager', 'streamer', 'supervisor', 'admin'].map((r) => (
+                  <button
+                    key={r}
+                    type="button"
+                    onClick={() => setAccountRoleFilter(r)}
+                    style={{
+                      padding: '6px 12px',
+                      borderRadius: '8px',
+                      fontSize: '12px',
+                      fontWeight: '700',
+                      border: accountRoleFilter === r ? '1px solid #f59e0b' : '1px solid var(--glass-border)',
+                      background: accountRoleFilter === r ? 'rgba(245,158,11,0.2)' : 'transparent',
+                      color: accountRoleFilter === r ? '#f59e0b' : 'var(--text-muted)',
+                      cursor: 'pointer',
+                      fontFamily: 'inherit'
+                    }}
+                  >
+                    {r === 'all' && 'الكل'}
+                    {r === 'manager' && 'المدراء'}
+                    {r === 'streamer' && 'المذيعون'}
+                    {r === 'supervisor' && 'المشرفون'}
+                    {r === 'admin' && 'الآدمن'}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="table-responsive">
+              <table className="custom-table">
+                <thead>
+                  <tr>
+                    <th>الاسم / الوكالة</th>
+                    <th>البريد / الهاتف</th>
+                    <th>Bigo ID</th>
+                    <th>الصفة والنوع</th>
+                    <th>الرتبة / القلادة</th>
+                    <th>الفاصوليا والعمولة</th>
+                    <th>الحالة</th>
+                    <th>الإجراءات</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredAccounts.map((acc) => (
+                    <tr key={acc.id}>
+                      <td style={{ fontWeight: '800' }}>{acc.name}</td>
+                      <td>{acc.email}</td>
+                      <td style={{ color: '#06b6d4', fontWeight: '700' }}>{acc.bigoId}</td>
+                      <td>
+                        <span style={{
+                          padding: '4px 10px',
+                          borderRadius: '9999px',
+                          fontSize: '12px',
+                          fontWeight: '700',
+                          background: acc.role === 'manager' ? 'rgba(245,158,11,0.15)' : acc.role === 'admin' ? 'rgba(239,68,68,0.15)' : acc.role === 'streamer' ? 'rgba(6,182,212,0.15)' : 'rgba(139,92,246,0.15)',
+                          color: acc.role === 'manager' ? '#f59e0b' : acc.role === 'admin' ? '#ef4444' : acc.role === 'streamer' ? '#06b6d4' : '#8b5cf6'
+                        }}>
+                          {acc.role === 'manager' ? 'مدير وكالة' : acc.role === 'admin' ? 'مسؤول نظام (Admin)' : acc.role === 'streamer' ? 'مذيع / صانع' : 'مشرف مساعد'}
+                        </span>
+                      </td>
+                      <td>{acc.badge}</td>
+                      <td style={{ fontSize: '13px' }}>
+                        <div>{acc.beans} 💎</div>
+                        <div style={{ color: '#f59e0b', fontWeight: '700' }}>{acc.monthlySalary}</div>
+                      </td>
+                      <td>
+                        <button
+                          type="button"
+                          onClick={() => handleToggleAccountStatus(acc.id)}
+                          style={{
+                            padding: '4px 10px',
+                            borderRadius: '9999px',
+                            border: 'none',
+                            fontSize: '12px',
+                            fontWeight: '700',
+                            cursor: 'pointer',
+                            background: acc.status === 'active' ? 'rgba(16,185,129,0.15)' : 'rgba(239,68,68,0.15)',
+                            color: acc.status === 'active' ? '#10b981' : '#ef4444',
+                            fontFamily: 'inherit'
+                          }}
+                        >
+                          {acc.status === 'active' ? 'مفعل ✓' : 'معلق ✗'}
+                        </button>
+                      </td>
+                      <td>
+                        <div style={{ display: 'flex', gap: '6px' }}>
+                          <button
+                            type="button"
+                            className="action-btn-secondary"
+                            style={{ padding: '6px 10px', fontSize: '12px' }}
+                            onClick={() => handleEditAccountClick(acc)}
+                          >
+                            <Edit3 size={14} />
+                          </button>
+                          <button
+                            type="button"
+                            className="action-btn-secondary"
+                            style={{ padding: '6px 10px', fontSize: '12px', color: '#ef4444', borderColor: 'rgba(239,68,68,0.3)' }}
+                            onClick={() => handleDeleteAccount(acc.id)}
+                          >
+                            <Trash2 size={14} />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ---------------- TAB 6: RESET & BACKUP ---------------- */}
       {adminTab === 'system' && (
         <div className="glass-card" style={{ padding: '32px' }}>
           <h2 style={{ fontSize: '20px', fontWeight: '800', marginBottom: '16px', color: '#ef4444', display: 'flex', alignItems: 'center', gap: '8px' }}>
