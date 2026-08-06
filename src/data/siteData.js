@@ -209,3 +209,51 @@ export const englishGuide = {
     }
   ]
 };
+
+export const defaultCustomBlocks = [
+  {
+    id: "block-1",
+    title: "مركز الدعم السريع للوكلاء الجدد",
+    subtitle: "تواصل مباشر مع مدير الحسابات المعتمد للحصول على القلادة والترخيص",
+    category: "دعم فني",
+    icon: "Headphones",
+    color: "#f59e0b",
+    image: "/images/image_1.png",
+    buttonText: "تواصل عبر الواتساب",
+    buttonLink: "https://wa.me/",
+    enabled: true
+  },
+  {
+    id: "block-2",
+    title: "إرشادات الأمان وتوثيق الحسابات",
+    subtitle: "تجنب الحظر واحمي بيانات الوكالة عبر التوثيق البيومتري المعتمد",
+    category: "تنبيه أمني",
+    icon: "ShieldAlert",
+    color: "#06b6d4",
+    image: "/images/image_7.png",
+    buttonText: "قراءة إرشادات الأمان",
+    buttonLink: "#guide",
+    enabled: true
+  },
+  {
+    id: "block-3",
+    title: "مكافآت التميز الشهرية وكبار الداعمين",
+    subtitle: "بونص إضافي بنسبة تصل إلى 15% للوكالات التي تتجاوز التارجت المستهدف",
+    category: "جوائز وبونص",
+    icon: "Zap",
+    color: "#8b5cf6",
+    image: "/images/image_9.png",
+    buttonText: "استعراض حاسبة العمولات",
+    buttonLink: "#points",
+    enabled: true
+  }
+];
+
+export const defaultThemeConfig = {
+  fontFamily: "'Cairo', sans-serif",
+  baseFontSize: 16,
+  headingFontSize: 24,
+  primaryColor: "#f59e0b",
+  glowColor: "rgba(245, 158, 11, 0.3)"
+};
+

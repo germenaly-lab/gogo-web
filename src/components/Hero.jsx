@@ -1,8 +1,9 @@
 import React from 'react';
 import { ShieldCheck, Award, Calculator, ExternalLink, ArrowLeft } from 'lucide-react';
-import { siteInfo } from '../data/siteData';
+import { siteInfo as defaultSiteInfo } from '../data/siteData';
 
-export default function Hero({ setActiveTab, onOpenApplyModal }) {
+export default function Hero({ setActiveTab, onOpenApplyModal, siteInfo: propSiteInfo }) {
+  const currentSiteInfo = propSiteInfo || defaultSiteInfo;
   return (
     <section className="hero-card">
       <div className="hero-grid">
@@ -12,8 +13,8 @@ export default function Hero({ setActiveTab, onOpenApplyModal }) {
             <span>وكالة معتمدة رسمياً لدى Bigo Live</span>
           </div>
           
-          <h1 className="hero-title">{siteInfo.title}</h1>
-          <p className="hero-desc">{siteInfo.description}</p>
+          <h1 className="hero-title">{currentSiteInfo.title}</h1>
+          <p className="hero-desc">{currentSiteInfo.description}</p>
           
           <div className="hero-actions">
             <button className="action-btn-primary" onClick={onOpenApplyModal}>
@@ -32,7 +33,7 @@ export default function Hero({ setActiveTab, onOpenApplyModal }) {
             </button>
 
             <a 
-              href={siteInfo.contactLinks.cibus} 
+              href={currentSiteInfo.contactLinks?.cibus || '#'} 
               target="_blank" 
               rel="noreferrer" 
               className="action-btn-secondary"
@@ -45,7 +46,7 @@ export default function Hero({ setActiveTab, onOpenApplyModal }) {
 
         <div style={{ textAlign: 'center' }}>
           <img 
-            src={siteInfo.heroBanner} 
+            src={currentSiteInfo.heroBanner} 
             alt="Agency Book Header" 
             className="hero-img-preview"
           />

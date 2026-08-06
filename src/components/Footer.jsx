@@ -21,6 +21,7 @@ export default function Footer({ setActiveTab, onOpenApplyModal }) {
           <button onClick={() => setActiveTab('points')} style={{ background: 'none', border: 'none', color: '#94a3b8', cursor: 'pointer', fontFamily: 'inherit' }}>جدول العمولات</button>
           <button onClick={() => setActiveTab('guide')} style={{ background: 'none', border: 'none', color: '#94a3b8', cursor: 'pointer', fontFamily: 'inherit' }}>دليل الوكالات الجديدة</button>
           <button onClick={() => setActiveTab('gala')} style={{ background: 'none', border: 'none', color: '#94a3b8', cursor: 'pointer', fontFamily: 'inherit' }}>Bigo GALA</button>
+          <button onClick={() => { setActiveTab('admin'); window.location.hash = '#admin'; }} style={{ background: 'none', border: 'none', color: '#f59e0b', cursor: 'pointer', fontFamily: 'inherit', fontWeight: '700' }}>لوحة التحكم (Admin)</button>
           <a href={siteInfo.contactLinks.cibus} target="_blank" rel="noreferrer" style={{ color: '#06b6d4', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
             <span>منصة CIBUS</span>
             <ExternalLink size={14} />
