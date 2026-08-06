@@ -26,7 +26,10 @@ import {
   Users,
   UserPlus,
   UserCheck,
-  ShieldAlert
+  ShieldAlert,
+  User,
+  KeyRound,
+  LogOut
 } from 'lucide-react';
 
 export default function AdminDashboard({
@@ -383,12 +386,15 @@ export default function AdminDashboard({
     const u = adminUsername.trim().toLowerCase();
     const p = adminPassword.trim().toLowerCase();
 
-    if ((u === 'admin' || u === 'ادمن') && (p === 'admin' || p === 'ادمن')) {
+    const isUserValid = ['admin', 'ادمن', 'أدمن', 'إدمن', 'آدمن'].includes(u);
+    const isPassValid = ['admin', 'ادمن', 'أدمن', 'إدمن', 'آدمن'].includes(p);
+
+    if (isUserValid && isPassValid) {
       sessionStorage.setItem('gogo_admin_auth', 'true');
       setIsAdminLoggedIn(true);
       setAdminLoginError('');
     } else {
-      setAdminLoginError('اسم المستخدم أو كلمة المرور غير صحيحة. يرجى تجربة: admin / admin');
+      setAdminLoginError('بيانات الدخول غير صحيحة. يمكنك تجربة: admin / admin أو ادمن / ادمن');
     }
   };
 
