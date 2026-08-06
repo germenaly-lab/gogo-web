@@ -350,21 +350,7 @@ export default function AdminDashboard({
             </p>
           </div>
 
-          <div
-            style={{
-              background: 'rgba(245,158,11,0.12)',
-              border: '1px solid rgba(245,158,11,0.3)',
-              padding: '10px 14px',
-              borderRadius: '12px',
-              fontSize: '13px',
-              color: '#f59e0b',
-              textAlign: 'center',
-              marginBottom: '20px',
-              fontWeight: '700'
-            }}
-          >
-            🔑 اليوزر: <code style={{ color: '#fff', background: 'rgba(0,0,0,0.3)', padding: '2px 6px', borderRadius: '4px' }}>admin</code> | الباسورد: <code style={{ color: '#fff', background: 'rgba(0,0,0,0.3)', padding: '2px 6px', borderRadius: '4px' }}>admin</code>
-          </div>
+
 
           {adminLoginError && (
             <div style={{ background: 'rgba(239,68,68,0.15)', border: '1px solid #ef4444', color: '#fca5a5', padding: '10px 14px', borderRadius: '10px', fontSize: '13px', marginBottom: '16px', textAlign: 'center' }}>
