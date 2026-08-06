@@ -103,6 +103,19 @@ export default function App() {
     localStorage.setItem('gogo_customBlocks', JSON.stringify(customBlocks));
   }, [customBlocks]);
 
+  const [themeMode, setThemeMode] = useState(() => {
+    return localStorage.getItem('gogo_themeMode') || 'dark';
+  });
+
+  useEffect(() => {
+    localStorage.setItem('gogo_themeMode', themeMode);
+    document.documentElement.setAttribute('data-theme', themeMode);
+  }, [themeMode]);
+
+  const handleToggleThemeMode = () => {
+    setThemeMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
+
   // Dynamically apply Theme & Font changes to document
   useEffect(() => {
     const root = document.documentElement;
@@ -136,12 +149,14 @@ export default function App() {
     localStorage.removeItem('gogo_updatesData');
     localStorage.removeItem('gogo_badgesData');
     localStorage.removeItem('gogo_customBlocks');
+    localStorage.removeItem('gogo_themeMode');
 
     setSiteInfo(defaultSiteInfo);
     setThemeConfig(defaultThemeConfig);
     setUpdatesData(defaultUpdatesData);
     setBadgesData(defaultBadgesData);
     setCustomBlocks(defaultCustomBlocks);
+    setThemeMode('dark');
   };
 
   // Search filter logic
@@ -170,6 +185,8 @@ export default function App() {
         user={user}
         onLogout={handleLogout}
         siteTitle={siteInfo.title}
+        themeMode={themeMode}
+        onToggleThemeMode={handleToggleThemeMode}
       />
 
       <main className="main-content">

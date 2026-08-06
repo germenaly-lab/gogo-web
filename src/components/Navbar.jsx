@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, Bell, Award, Calculator, BookOpen, Sparkles, Globe, Search, User, LogOut, ShieldCheck, Sliders } from 'lucide-react';
+import { Home, Bell, Award, Calculator, BookOpen, Sparkles, Globe, Search, User, LogOut, ShieldCheck, Sliders, Sun, Moon } from 'lucide-react';
 
 const iconMap = {
   Home: Home,
@@ -11,7 +11,7 @@ const iconMap = {
   Globe: Globe,
 };
 
-export default function Navbar({ navItems, activeTab, setActiveTab, searchQuery, setSearchQuery, user, onLogout, siteTitle }) {
+export default function Navbar({ navItems, activeTab, setActiveTab, searchQuery, setSearchQuery, user, onLogout, siteTitle, themeMode, onToggleThemeMode }) {
   return (
     <header className="main-header">
       <nav className="nav-bar">
@@ -66,7 +66,17 @@ export default function Navbar({ navItems, activeTab, setActiveTab, searchQuery,
           </li>
         </ul>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <button
+            type="button"
+            className="action-btn-secondary"
+            onClick={onToggleThemeMode}
+            style={{ padding: '8px 12px', borderRadius: '9999px' }}
+            title={themeMode === 'light' ? 'الوضع الليلي' : 'الوضع الساطع'}
+          >
+            {themeMode === 'light' ? <Moon size={18} color="#8b5cf6" /> : <Sun size={18} color="#f59e0b" />}
+          </button>
+
           {user && (
             <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
               <Search size={16} style={{ position: 'absolute', right: '12px', color: '#94a3b8', pointerEvents: 'none' }} />
