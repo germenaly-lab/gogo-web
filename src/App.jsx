@@ -40,32 +40,32 @@ export default function App() {
 
   // Dynamic Site State with localStorage persistence
   const [siteInfo, setSiteInfo] = useState(() => {
-    const saved = localStorage.getItem('gogo_siteInfo');
+    const saved = localStorage.getItem('bigo_siteInfo') || localStorage.getItem('gogo_siteInfo');
     return saved ? JSON.parse(saved) : defaultSiteInfo;
   });
 
   const [themeConfig, setThemeConfig] = useState(() => {
-    const saved = localStorage.getItem('gogo_themeConfig');
+    const saved = localStorage.getItem('bigo_themeConfig') || localStorage.getItem('gogo_themeConfig');
     return saved ? JSON.parse(saved) : defaultThemeConfig;
   });
 
   const [updatesData, setUpdatesData] = useState(() => {
-    const saved = localStorage.getItem('gogo_updatesData');
+    const saved = localStorage.getItem('bigo_updatesData') || localStorage.getItem('gogo_updatesData');
     return saved ? JSON.parse(saved) : defaultUpdatesData;
   });
 
   const [badgesData, setBadgesData] = useState(() => {
-    const saved = localStorage.getItem('gogo_badgesData');
+    const saved = localStorage.getItem('bigo_badgesData') || localStorage.getItem('gogo_badgesData');
     return saved ? JSON.parse(saved) : defaultBadgesData;
   });
 
   const [customBlocks, setCustomBlocks] = useState(() => {
-    const saved = localStorage.getItem('gogo_customBlocks');
+    const saved = localStorage.getItem('bigo_customBlocks') || localStorage.getItem('gogo_customBlocks');
     return saved ? JSON.parse(saved) : defaultCustomBlocks;
   });
 
   const [accountsData, setAccountsData] = useState(() => {
-    const saved = localStorage.getItem('gogo_accountsData');
+    const saved = localStorage.getItem('bigo_accountsData') || localStorage.getItem('gogo_accountsData');
     return saved ? JSON.parse(saved) : defaultAccountsData;
   });
 
@@ -90,35 +90,35 @@ export default function App() {
 
   // Sync state to localStorage
   useEffect(() => {
-    localStorage.setItem('gogo_siteInfo', JSON.stringify(siteInfo));
+    localStorage.setItem('bigo_siteInfo', JSON.stringify(siteInfo));
   }, [siteInfo]);
 
   useEffect(() => {
-    localStorage.setItem('gogo_themeConfig', JSON.stringify(themeConfig));
+    localStorage.setItem('bigo_themeConfig', JSON.stringify(themeConfig));
   }, [themeConfig]);
 
   useEffect(() => {
-    localStorage.setItem('gogo_updatesData', JSON.stringify(updatesData));
+    localStorage.setItem('bigo_updatesData', JSON.stringify(updatesData));
   }, [updatesData]);
 
   useEffect(() => {
-    localStorage.setItem('gogo_badgesData', JSON.stringify(badgesData));
+    localStorage.setItem('bigo_badgesData', JSON.stringify(badgesData));
   }, [badgesData]);
 
   useEffect(() => {
-    localStorage.setItem('gogo_customBlocks', JSON.stringify(customBlocks));
+    localStorage.setItem('bigo_customBlocks', JSON.stringify(customBlocks));
   }, [customBlocks]);
 
   useEffect(() => {
-    localStorage.setItem('gogo_accountsData', JSON.stringify(accountsData));
+    localStorage.setItem('bigo_accountsData', JSON.stringify(accountsData));
   }, [accountsData]);
 
   const [themeMode, setThemeMode] = useState(() => {
-    return localStorage.getItem('gogo_themeMode') || 'dark';
+    return localStorage.getItem('bigo_themeMode') || localStorage.getItem('gogo_themeMode') || 'dark';
   });
 
   useEffect(() => {
-    localStorage.setItem('gogo_themeMode', themeMode);
+    localStorage.setItem('bigo_themeMode', themeMode);
     document.documentElement.setAttribute('data-theme', themeMode);
   }, [themeMode]);
 
@@ -154,6 +154,13 @@ export default function App() {
   };
 
   const handleResetDefaults = () => {
+    localStorage.removeItem('bigo_siteInfo');
+    localStorage.removeItem('bigo_themeConfig');
+    localStorage.removeItem('bigo_updatesData');
+    localStorage.removeItem('bigo_badgesData');
+    localStorage.removeItem('bigo_customBlocks');
+    localStorage.removeItem('bigo_accountsData');
+    localStorage.removeItem('bigo_themeMode');
     localStorage.removeItem('gogo_siteInfo');
     localStorage.removeItem('gogo_themeConfig');
     localStorage.removeItem('gogo_updatesData');

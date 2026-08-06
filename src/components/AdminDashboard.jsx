@@ -49,7 +49,7 @@ export default function AdminDashboard({
   onCloseAdmin
 }) {
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(() => {
-    return sessionStorage.getItem('gogo_admin_auth') === 'true';
+    return sessionStorage.getItem('bigo_admin_auth') === 'true' || sessionStorage.getItem('gogo_admin_auth') === 'true';
   });
 
   const [adminUsername, setAdminUsername] = useState('');
@@ -390,7 +390,7 @@ export default function AdminDashboard({
     const isPassValid = ['admin', 'ادمن', 'أدمن', 'إدمن', 'آدمن'].includes(p);
 
     if (isUserValid && isPassValid) {
-      sessionStorage.setItem('gogo_admin_auth', 'true');
+      sessionStorage.setItem('bigo_admin_auth', 'true');
       setIsAdminLoggedIn(true);
       setAdminLoginError('');
     } else {
@@ -399,6 +399,7 @@ export default function AdminDashboard({
   };
 
   const handleAdminLogout = () => {
+    sessionStorage.removeItem('bigo_admin_auth');
     sessionStorage.removeItem('gogo_admin_auth');
     setIsAdminLoggedIn(false);
     setAdminUsername('');
