@@ -30,10 +30,10 @@ export default function ApplyModal({ isOpen, onClose, onGoToLogin }) {
         {submitted ? (
           <div style={{ textAlign: 'center', padding: '24px 0' }}>
             <CheckCircle size={64} color="#f59e0b" style={{ margin: '0 auto 16px auto' }} />
-            <h3 style={{ fontSize: '24px', fontWeight: '800', color: '#fff', marginBottom: '12px' }}>
+            <h3 style={{ fontSize: '24px', fontWeight: '800', marginBottom: '12px' }}>
               تم إرسال طلب الوكالة بنجاح!
             </h3>
-            <p style={{ fontSize: '15px', color: '#94a3b8', lineHeight: '1.6', marginBottom: '24px' }}>
+            <p style={{ fontSize: '15px', color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '24px' }}>
               شكراً لتواصلك معنا. سيقوم فريق إدارة Bigo Live بمراجعة بياناتك والتواصل معك عبر الواتساب/الهاتف خلال 24 ساعة لإكمال التوثيق ومنحك القلادة الذهبية.
             </p>
             <button className="action-btn-primary" onClick={() => { setSubmitted(false); onClose(); }}>
@@ -48,10 +48,10 @@ export default function ApplyModal({ isOpen, onClose, onGoToLogin }) {
               </span>
             </div>
 
-            <h3 style={{ fontSize: '22px', fontWeight: '900', color: '#fff', marginBottom: '6px' }}>
+            <h3 style={{ fontSize: '22px', fontWeight: '900', marginBottom: '6px' }}>
               طلب إنشاء وكالة Bigo Live معتمدة
             </h3>
-            <p style={{ fontSize: '14px', color: '#94a3b8', marginBottom: '20px' }}>
+            <p style={{ fontSize: '14px', color: 'var(--text-muted)', marginBottom: '20px' }}>
               أدخل بياناتك مباشرة ليتم التواصل معك رسمياً ومعالجة التوثيق.
             </p>
 

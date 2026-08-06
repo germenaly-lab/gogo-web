@@ -129,10 +129,10 @@ export default function LoginSection({ user, setUser, setActiveTab }) {
   return (
     <section style={{ maxWidth: '540px', margin: '0 auto' }}>
       <div className="glass-card" style={{ padding: '36px', border: '1px solid rgba(245,158,11,0.4)' }}>
-        <h2 style={{ fontSize: '24px', fontWeight: '900', textAlign: 'center', marginBottom: '8px', color: '#fff' }}>
+        <h2 style={{ fontSize: '24px', fontWeight: '900', textAlign: 'center', marginBottom: '8px' }}>
           تسجيل الدخول إلى حسابك
         </h2>
-        <p style={{ fontSize: '14px', color: '#94a3b8', textAlign: 'center', marginBottom: '24px' }}>
+        <p style={{ fontSize: '14px', color: 'var(--text-muted)', textAlign: 'center', marginBottom: '24px' }}>
           أدخل بيانات الاعتماد الخاصة بك للدخول إلى لوحة التحكم
         </p>
 

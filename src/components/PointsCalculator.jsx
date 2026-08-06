@@ -102,7 +102,7 @@ export default function PointsCalculator() {
       </div>
 
       {/* Target Tiers Table */}
-      <h3 style={{ fontSize: '20px', fontWeight: '800', marginBottom: '16px', color: '#fff' }}>
+      <h3 style={{ fontSize: '20px', fontWeight: '800', marginBottom: '16px' }}>
         جدول مستويات التارجت الرسمية لدى Bigo Live
       </h3>
 
@@ -125,7 +125,7 @@ export default function PointsCalculator() {
                 <td>{tier.beans.toLocaleString()} فاصوليا</td>
                 <td>{tier.hours} ساعة</td>
                 <td>{tier.days} يوم</td>
-                <td style={{ fontWeight: '700', color: '#fff' }}>${tier.hostSalaryUSD} USD</td>
+                <td style={{ fontWeight: '700' }}>${tier.hostSalaryUSD} USD</td>
                 <td style={{ color: '#06b6d4', fontWeight: '700' }}>${tier.agencyBonusUSD} USD</td>
               </tr>
             ))}
