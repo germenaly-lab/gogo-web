@@ -24,7 +24,7 @@ export default function CustomBlocksSection({ customBlocks, setActiveTab }) {
         </h2>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
         {activeBlocks.map((block) => {
           const Icon = iconMap[block.icon] || Sparkles;
           const blockColor = block.color || '#f59e0b';

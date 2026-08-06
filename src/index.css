@@ -770,3 +770,188 @@ body {
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
 }
+
+/* ==========================================================================
+   MOBILE & TABLET RESPONSIVE OVERHAUL (أجهزة الموبايل والشاشات الصغيرة)
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .badges-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  /* Header & Navigation */
+  .main-header {
+    padding: 10px 14px;
+  }
+
+  .nav-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .logo-area {
+    justify-content: center;
+  }
+
+  .logo-badge {
+    width: 38px;
+    height: 38px;
+    font-size: 18px;
+  }
+
+  .logo-text h1 {
+    font-size: 18px;
+  }
+
+  .nav-links {
+    width: 100%;
+    justify-content: flex-start;
+    padding-bottom: 8px;
+    gap: 6px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nav-tab {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  /* Hero Section */
+  .hero-card {
+    padding: 24px 18px !important;
+    margin-bottom: 24px !important;
+    border-radius: var(--radius-md) !important;
+  }
+
+  .hero-title {
+    font-size: 24px !important;
+    line-height: 1.35 !important;
+    margin-bottom: 12px !important;
+  }
+
+  .hero-desc {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    margin-bottom: 20px !important;
+  }
+
+  .hero-actions {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 10px !important;
+  }
+
+  .hero-actions .action-btn-primary,
+  .hero-actions .action-btn-secondary,
+  .hero-actions a {
+    width: 100% !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+
+  .hero-img-preview {
+    max-height: 220px !important;
+  }
+
+  /* Main Container & Section Titles */
+  .main-content {
+    padding: 16px 12px !important;
+  }
+
+  .section-title {
+    font-size: 18px !important;
+    gap: 8px !important;
+  }
+
+  .section-title-wrap {
+    margin-bottom: 18px !important;
+    padding-bottom: 10px !important;
+  }
+
+  /* Cards & Grids */
+  .glass-card {
+    padding: 18px !important;
+    border-radius: 14px !important;
+  }
+
+  .badges-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .badge-card {
+    padding: 18px !important;
+  }
+
+  .badge-img {
+    height: 140px !important;
+  }
+
+  /* Calculator */
+  .calc-card {
+    padding: 20px 14px !important;
+  }
+
+  .calc-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
+  .calc-result-box {
+    padding: 16px !important;
+  }
+
+  .result-val-gold,
+  .result-val-cyan {
+    font-size: 20px !important;
+  }
+
+  /* Tables */
+  .custom-table {
+    font-size: 13px !important;
+  }
+
+  .custom-table th,
+  .custom-table td {
+    padding: 10px 8px !important;
+  }
+
+  /* Footer */
+  .main-footer {
+    padding: 28px 14px !important;
+    margin-top: 36px !important;
+  }
+
+  .footer-content {
+    gap: 12px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-text h1 {
+    font-size: 16px;
+  }
+
+  .hero-title {
+    font-size: 21px !important;
+  }
+
+  .hero-badge-tag {
+    font-size: 11px;
+    padding: 4px 10px;
+  }
+
+  .form-select, .form-input {
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+
+  .modal-content {
+    padding: 20px 14px;
+  }
+}
+
