@@ -32,6 +32,7 @@ export default function LoginSection({ user, setUser, setActiveTab }) {
       targetProgress: 85,
       cityCountry: 'الرياض، السعودية'
     });
+    if (setActiveTab) setActiveTab('home');
   };
 
   const handleLogout = () => {

@@ -30,7 +30,7 @@ export default function App() {
     ) {
       return 'admin';
     }
-    return 'home';
+    return 'login';
   });
 
   const [searchQuery, setSearchQuery] = useState('');
@@ -135,7 +135,7 @@ export default function App() {
 
   const handleLogout = () => {
     setUser(null);
-    setActiveTab('home');
+    setActiveTab('login');
     setIsRegisterMode(false);
   };
 
