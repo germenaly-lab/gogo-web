@@ -22,7 +22,7 @@ export default function EnglishGuide() {
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px' }}>
           {englishGuide.keyPoints.map((item, idx) => (
-            <div key={idx} className="glass-card" style={{ padding: '24px', background: 'rgba(15, 23, 42, 0.7)' }}>
+            <div key={idx} className="glass-card" style={{ padding: '24px' }}>
               <h3 style={{ fontSize: '18px', fontWeight: '800', color: '#f59e0b', marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <CheckCircle2 size={20} color="#f59e0b" />
                 <span>{item.title}</span>

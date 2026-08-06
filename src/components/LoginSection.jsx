@@ -56,14 +56,14 @@ export default function LoginSection({ user, setUser, setActiveTab }) {
         </div>
 
         {/* Dashboard Profile Card */}
-        <div className="glass-card" style={{ padding: '32px', marginBottom: '32px', background: 'linear-gradient(135deg, rgba(22, 30, 49, 0.9), rgba(15, 23, 42, 0.95))' }}>
+        <div className="glass-card" style={{ padding: '32px', marginBottom: '32px' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '20px', borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '24px', marginBottom: '24px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
               <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: 'linear-gradient(135deg, #f59e0b, #d97706)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '28px', fontWeight: '900', color: '#0b0f19', boxShadow: '0 0 20px rgba(245,158,11,0.4)' }}>
                 {user.name.charAt(0)}
               </div>
               <div>
-                <h3 style={{ fontSize: '22px', fontWeight: '800', color: '#fff' }}>{user.name}</h3>
+                <h3 style={{ fontSize: '22px', fontWeight: '800' }}>{user.name}</h3>
                 <p style={{ fontSize: '14px', color: '#94a3b8' }}>
                   آيدي بيجو (Bigo ID): <span style={{ color: '#06b6d4', fontWeight: '700' }}>{user.bigoId}</span> | الصفة: <span style={{ color: '#f59e0b', fontWeight: '700' }}>{user.role === 'manager' ? 'صاحب وكالة معتمدة' : user.role === 'supervisor' ? 'مشرف مساعد' : 'مذيع رسمى'}</span>
                 </p>
@@ -78,7 +78,7 @@ export default function LoginSection({ user, setUser, setActiveTab }) {
 
           {/* Quick Metrics Grid */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '20px', marginBottom: '28px' }}>
-            <div className="glass-card" style={{ padding: '20px', background: 'rgba(15,23,42,0.8)', border: '1px solid rgba(6,182,212,0.3)' }}>
+            <div className="glass-card" style={{ padding: '20px', border: '1px solid rgba(6,182,212,0.3)' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
                 <span style={{ fontSize: '13px', color: '#94a3b8' }}>مجموع الفاصوليا هذا الشهر</span>
                 <BarChart3 size={18} color="#06b6d4" />
@@ -86,7 +86,7 @@ export default function LoginSection({ user, setUser, setActiveTab }) {
               <span style={{ fontSize: '24px', fontWeight: '900', color: '#06b6d4' }}>{user.totalBeans} 💎</span>
             </div>
 
-            <div className="glass-card" style={{ padding: '20px', background: 'rgba(15,23,42,0.8)', border: '1px solid rgba(245,158,11,0.3)' }}>
+            <div className="glass-card" style={{ padding: '20px', border: '1px solid rgba(245,158,11,0.3)' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
                 <span style={{ fontSize: '13px', color: '#94a3b8' }}>الأرباح والعمولة التقديرية</span>
                 <DollarSign size={18} color="#f59e0b" />
@@ -94,7 +94,7 @@ export default function LoginSection({ user, setUser, setActiveTab }) {
               <span style={{ fontSize: '24px', fontWeight: '900', color: '#f59e0b' }}>{user.monthlySalary}</span>
             </div>
 
-            <div className="glass-card" style={{ padding: '20px', background: 'rgba(15,23,42,0.8)', border: '1px solid rgba(139,92,246,0.3)' }}>
+            <div className="glass-card" style={{ padding: '20px', border: '1px solid rgba(139,92,246,0.3)' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
                 <span style={{ fontSize: '13px', color: '#94a3b8' }}>المذيعون النشطون بالوكالة</span>
                 <Users size={18} color="#8b5cf6" />
@@ -102,7 +102,7 @@ export default function LoginSection({ user, setUser, setActiveTab }) {
               <span style={{ fontSize: '24px', fontWeight: '900', color: '#8b5cf6' }}>{user.activeStreamers} مذيع</span>
             </div>
 
-            <div className="glass-card" style={{ padding: '20px', background: 'rgba(15,23,42,0.8)', border: '1px solid rgba(236,72,153,0.3)' }}>
+            <div className="glass-card" style={{ padding: '20px', border: '1px solid rgba(236,72,153,0.3)' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
                 <span style={{ fontSize: '13px', color: '#94a3b8' }}>نسبة إنجاز التارجت</span>
                 <Clock size={18} color="#ec4899" />
@@ -128,7 +128,7 @@ export default function LoginSection({ user, setUser, setActiveTab }) {
 
   return (
     <section style={{ maxWidth: '540px', margin: '0 auto' }}>
-      <div className="glass-card" style={{ padding: '36px', background: 'linear-gradient(145deg, rgba(22, 30, 49, 0.95), rgba(15, 23, 42, 0.98))', border: '1px solid rgba(245,158,11,0.4)' }}>
+      <div className="glass-card" style={{ padding: '36px', border: '1px solid rgba(245,158,11,0.4)' }}>
         <h2 style={{ fontSize: '24px', fontWeight: '900', textAlign: 'center', marginBottom: '8px', color: '#fff' }}>
           تسجيل الدخول إلى حسابك
         </h2>

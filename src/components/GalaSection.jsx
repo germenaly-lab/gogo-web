@@ -18,7 +18,7 @@ export default function GalaSection() {
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '32px' }}>
         {galaData.events.map((ev, idx) => (
-          <div key={idx} className="glass-card" style={{ padding: '28px', background: 'linear-gradient(145deg, rgba(22, 30, 49, 0.9), rgba(15, 23, 42, 0.95))' }}>
+          <div key={idx} className="glass-card" style={{ padding: '28px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
               <span style={{ padding: '4px 14px', borderRadius: '9999px', background: 'linear-gradient(135deg, #f59e0b, #d97706)', color: '#0b0f19', fontWeight: '900', fontSize: '13px' }}>
                 {ev.tag}

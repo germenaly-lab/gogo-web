@@ -12,7 +12,7 @@ export default function GuideSection({ onOpenApplyModal }) {
         </h2>
       </div>
 
-      <div className="glass-card" style={{ padding: '32px', marginBottom: '32px', background: 'linear-gradient(135deg, rgba(22, 30, 49, 0.8), rgba(15, 23, 42, 0.95))' }}>
+      <div className="glass-card" style={{ padding: '32px', marginBottom: '32px' }}>
         <p style={{ fontSize: '18px', color: '#f59e0b', fontWeight: '700', marginBottom: '8px' }}>
           {newAgenciesGuide.subtitle}
         </p>
