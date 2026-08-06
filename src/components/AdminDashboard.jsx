@@ -342,7 +342,7 @@ export default function AdminDashboard({
             >
               <Lock size={32} color="#0b0f19" />
             </div>
-            <h2 style={{ fontSize: '24px', fontWeight: '900', color: '#fff', marginBottom: '6px' }}>
+            <h2 style={{ fontSize: '24px', fontWeight: '900', marginBottom: '6px' }}>
               تسجيل دخول الأدمن (Admin Login)
             </h2>
             <p style={{ fontSize: '13px', color: '#94a3b8' }}>
@@ -446,7 +446,7 @@ export default function AdminDashboard({
               <Sliders size={28} color="#0b0f19" />
             </div>
             <div>
-              <h1 style={{ fontSize: '24px', fontWeight: '900', color: '#fff' }}>
+              <h1 style={{ fontSize: '24px', fontWeight: '900' }}>
                 لوحة التحكم الكاملة بالموقع (Admin Dashboard)
               </h1>
               <p style={{ fontSize: '13px', color: '#94a3b8' }}>
@@ -781,7 +781,7 @@ export default function AdminDashboard({
 
           {/* Articles List */}
           <div className="glass-card" style={{ padding: '28px' }}>
-            <h3 style={{ fontSize: '18px', fontWeight: '800', color: '#fff', marginBottom: '16px' }}>
+            <h3 style={{ fontSize: '18px', fontWeight: '800', marginBottom: '16px' }}>
               المقالات والإشعارات الحالية في الموقع:
             </h3>
 
@@ -941,7 +941,7 @@ export default function AdminDashboard({
           </div>
 
           <div className="glass-card" style={{ padding: '28px' }}>
-            <h3 style={{ fontSize: '18px', fontWeight: '800', color: '#fff', marginBottom: '16px' }}>
+            <h3 style={{ fontSize: '18px', fontWeight: '800', marginBottom: '16px' }}>
               القلادات المعروضة حالياً:
             </h3>
 
@@ -1120,7 +1120,7 @@ export default function AdminDashboard({
 
           {/* Custom Blocks List */}
           <div className="glass-card" style={{ padding: '28px' }}>
-            <h3 style={{ fontSize: '18px', fontWeight: '800', color: '#fff', marginBottom: '16px' }}>
+            <h3 style={{ fontSize: '18px', fontWeight: '800', marginBottom: '16px' }}>
               المربعات المسجلة حالياً على الداشبورد / الصفحة الرئيسية:
             </h3>
 

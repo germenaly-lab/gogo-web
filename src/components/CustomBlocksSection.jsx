@@ -73,7 +73,7 @@ export default function CustomBlocksSection({ customBlocks, setActiveTab }) {
               </div>
 
               <div>
-                <h3 style={{ fontSize: '20px', fontWeight: '800', color: '#fff', marginBottom: '8px' }}>
+                <h3 style={{ fontSize: '20px', fontWeight: '800', marginBottom: '8px' }}>
                   {block.title}
                 </h3>
                 <p style={{ fontSize: '14px', color: '#94a3b8', lineHeight: '1.6' }}>

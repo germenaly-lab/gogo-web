@@ -24,17 +24,17 @@ export default function UpdatesSection({ updatesData }) {
               </span>
             </div>
 
-            <h3 style={{ fontSize: '18px', fontWeight: '800', color: '#fff', lineHeight: '1.4' }}>
+            <h3 style={{ fontSize: '18px', fontWeight: '800', lineHeight: '1.4' }}>
               {update.title}
             </h3>
 
-            <p style={{ fontSize: '14px', color: '#94a3b8', lineHeight: '1.6' }}>
+            <p style={{ fontSize: '14px', color: 'var(--text-muted)', lineHeight: '1.6' }}>
               {update.summary}
             </p>
 
-            <div style={{ background: 'rgba(15,23,42,0.6)', padding: '14px', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.05)' }}>
+            <div style={{ background: 'rgba(6,182,212,0.08)', padding: '14px', borderRadius: '10px', border: '1px solid rgba(6,182,212,0.2)' }}>
               <h4 style={{ fontSize: '13px', color: '#06b6d4', marginBottom: '8px', fontWeight: '700' }}>التفاصيل والاشتراطات:</h4>
-              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '13px', color: '#cbd5e1' }}>
+              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '13px' }}>
                 {update.details.map((detail, idx) => (
                   <li key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
                     <CheckCircle2 size={16} color="#06b6d4" style={{ flexShrink: 0, marginTop: '2px' }} />

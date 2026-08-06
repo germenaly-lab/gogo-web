@@ -27,11 +27,11 @@ export default function GuideSection({ onOpenApplyModal }) {
                 {sec.step}
               </span>
 
-              <h3 style={{ fontSize: '18px', fontWeight: '800', color: '#fff', marginBottom: '14px', paddingLeft: '40px' }}>
+              <h3 style={{ fontSize: '18px', fontWeight: '800', marginBottom: '14px', paddingLeft: '40px' }}>
                 {sec.title}
               </h3>
 
-              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '14px', color: '#94a3b8' }}>
+              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '14px', color: 'var(--text-muted)' }}>
                 {sec.content.map((item, i) => (
                   <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
                     <CheckCircle size={16} color="#f59e0b" style={{ flexShrink: 0, marginTop: '2px' }} />
@@ -44,7 +44,7 @@ export default function GuideSection({ onOpenApplyModal }) {
         </div>
 
         <div style={{ marginTop: '32px', textAlign: 'center', background: 'rgba(245,158,11,0.1)', padding: '24px', borderRadius: '16px', border: '1px solid rgba(245,158,11,0.3)' }}>
-          <h4 style={{ fontSize: '18px', fontWeight: '800', color: '#fff', marginBottom: '8px' }}>
+          <h4 style={{ fontSize: '18px', fontWeight: '800', marginBottom: '8px' }}>
             هل أنت جاهز لبدء وكالتك المعتمدة الآن؟
           </h4>
           <p style={{ fontSize: '14px', color: '#94a3b8', marginBottom: '16px' }}>

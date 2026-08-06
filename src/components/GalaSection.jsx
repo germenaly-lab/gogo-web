@@ -29,11 +29,11 @@ export default function GalaSection() {
               </span>
             </div>
 
-            <h3 style={{ fontSize: '20px', fontWeight: '800', color: '#fff', marginBottom: '8px' }}>
+            <h3 style={{ fontSize: '20px', fontWeight: '800', marginBottom: '8px' }}>
               {ev.year} - {ev.location}
             </h3>
 
-            <p style={{ fontSize: '14px', color: '#94a3b8', lineHeight: '1.6', marginBottom: '16px' }}>
+            <p style={{ fontSize: '14px', color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '16px' }}>
               {ev.description}
             </p>
 
@@ -47,9 +47,9 @@ export default function GalaSection() {
               ></iframe>
             </div>
 
-            <div style={{ marginTop: '16px', borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '12px' }}>
+            <div style={{ marginTop: '16px', borderTop: '1px solid var(--glass-border)', paddingTop: '12px' }}>
               <h4 style={{ fontSize: '13px', color: '#f59e0b', fontWeight: '700', marginBottom: '6px' }}>أبرز اللحظات والتكريمات:</h4>
-              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '13px', color: '#cbd5e1' }}>
+              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '13px', color: 'var(--text-muted)' }}>
                 {ev.highlights.map((h, i) => (
                   <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                     <Award size={14} color="#f59e0b" />
